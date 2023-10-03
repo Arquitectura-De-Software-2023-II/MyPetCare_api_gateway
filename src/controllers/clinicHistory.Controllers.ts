@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import msRoutes from "../config/msRoutes";
+import getAllPetsService from "../services/clinicHistory/getAllPets.service";
 
 class clinicHistoryController {
   private static apiRoute = msRoutes.clinicHistory_ms
@@ -10,6 +11,7 @@ class clinicHistoryController {
   public async updateInfoPet (req: Request, res: Response, _next: NextFunction): Promise<void> {
   }
   public async getAllPets (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const pets = getAllPetsService.getAllPets(1,1)
   }
   public async getPet (req: Request, res: Response, _next: NextFunction): Promise<void> {
   }
