@@ -30,8 +30,9 @@ class calendarController {
     res.status(event.status).json(event.answer)
   }
 
-  public async destroyEvent (_req: Request, res: Response, _next: NextFunction): Promise<void> {
-    const event = await DestroyEvents.DestroyEvent()
+  public async destroyEvent (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const id = req.params.id
+    const event = await DestroyEvents.DestroyEvent(id)
     res.status(event.status).json(event.answer)
   }
 }

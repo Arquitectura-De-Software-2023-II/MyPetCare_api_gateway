@@ -10,7 +10,7 @@ class ShowEvents {
         message: 'hello!'
       }
     }
-    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/events/' + id.toString()
+    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/events/' + id
 
     const events = await fetch(url)
       .then(async (response) => {

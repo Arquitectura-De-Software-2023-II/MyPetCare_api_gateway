@@ -2,7 +2,7 @@ import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
 class DestroyEvents {
-  public async DestroyEvent (): Promise<Responses> {
+  public async DestroyEvent (id: string): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.OK,
       message: 'hello!',
@@ -11,16 +11,15 @@ class DestroyEvents {
       }
 
     }
-    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/events/'
+    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/events/' + id
 
-    const events = await fetch(url)
+    const events = await fetch(url, { method: 'DELETE' })
       .then(async (response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok')
         }
         return await response.json()
       })
-    console.log(events)
     responses.answer = events
     return responses
   }
