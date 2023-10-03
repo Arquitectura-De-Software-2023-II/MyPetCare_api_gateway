@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from 'express'
-import msRoutes from '../config/msRoutes'
+// import msRoutes from '../config/msRoutes'
 import IndexEvents from '../services/calendar/IndexEvents.service'
 import CreateEvents from '../services/calendar/CreateEvents.service'
 import DestroyEvents from '../services/calendar/DestroyEvents.service'
 import UpdateEvents from '../services/calendar/UpdateEvents.service'
 import ShowEvents from '../services/calendar/ShowEvents.service'
 class calendarController {
-  private static readonly apiRoute = msRoutes.calendar_ms
+  // private static readonly apiRoute = msRoutes.calendar_ms
   // basic requests for events
 
   public async createEvent (_req: Request, res: Response, _next: NextFunction): Promise<void> {
@@ -24,8 +24,9 @@ class calendarController {
     res.status(event.status).json(event.answer)
   }
 
-  public async showSingleEvent (_req: Request, res: Response, _next: NextFunction): Promise<void> {
-    const event = await ShowEvents.ShowEvent()
+  public async showSingleEvent (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const id = req.params.id
+    const event = await ShowEvents.ShowEvent(id)
     res.status(event.status).json(event.answer)
   }
 

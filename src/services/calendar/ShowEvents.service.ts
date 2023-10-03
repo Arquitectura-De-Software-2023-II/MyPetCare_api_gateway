@@ -2,16 +2,15 @@ import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
 class ShowEvents {
-  public async ShowEvent (): Promise<Responses> {
+  public async ShowEvent (id: string): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.OK,
       message: 'hello!',
       answer: {
         message: 'hello!'
       }
-
     }
-    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/events/'
+    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/events/' + id.toString()
 
     const events = await fetch(url)
       .then(async (response) => {
