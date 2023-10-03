@@ -9,13 +9,15 @@ class calendarController {
   // private static readonly apiRoute = msRoutes.calendar_ms
   // basic requests for events
 
-  public async createEvent (_req: Request, res: Response, _next: NextFunction): Promise<void> {
-    const event = await CreateEvents.CreateEvent()
+  public async createEvent (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const data = JSON.stringify(req.body)
+    const event = await CreateEvents.CreateEvent(data)
     res.status(event.status).json(event.answer)
   }
 
-  public async updateEvent (_req: Request, res: Response, _next: NextFunction): Promise<void> {
-    const event = await UpdateEvents.UpdateEvent()
+  public async updateEvent (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const data = JSON.stringify(req.body)
+    const event = await UpdateEvents.UpdateEvent(data, req.params.id)
     res.status(event.status).json(event.answer)
   }
 
