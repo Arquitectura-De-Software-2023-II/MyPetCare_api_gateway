@@ -11,9 +11,9 @@ router.post('/events', calendarController.createEvent)
 // update event info
 router.put('/events/:id', calendarController.updateEvent)
 // get all events
-router.get('', calendarController.indexEvent)
+router.get('/events/', calendarController.indexEvent)
 // get event by id
-router.get('events/:id', calendarController.showSingleEvent)
+router.get('/events/:id', calendarController.showSingleEvent)
 // delete event by id
 router.delete('/:id', calendarController.destroyEvent)
 
