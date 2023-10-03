@@ -1,59 +1,35 @@
-import msRoutes from '../../config/msRoutes'
+import graphqlQueries from '../../graphqlRequests/graphqlQueries'
+import graphqlFetchQuery from '../../graphqlRequests/graphqlRequest'
+import { GraphqlhandlerResponse, GraphqlStatus } from '../../types/request.types'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
 class GetAllPets {
   public async getAllPets (): Promise<Responses> {
-    /*
-    let response: Responses
-    let groups: GroupDocument[] = []
-
-    // Get groups
+    let responses: Responses
+    let response: GraphqlhandlerResponse | null = null
     try {
-      groups = await GroupModel.find({}, { info: 1, _id: 0 }, { skip: offset, limit: index })
-    } catch {
-      response = {
+      response = await graphqlFetchQuery(graphqlQueries.getAllPets())
+    } catch (err) {
+      console.log(err)
+      responses = {
         status: ResponseStatus.INTERNAL_SERVER_ERROR,
-        message: 'Error finding groups'
+        message: 'Error fetching the pets'
       }
     }
-
-    // Check if there are groups
-    if (groups.length === 0) {
-      response = {
-        answer: groups,
-        status: ResponseStatus.OK,
-        message: 'There are no groups to show'
+    if (response?.status === GraphqlStatus.ERROR) {
+      console.log('Errorrrrrr')
+      console.log(response.res?.errors)
+      responses = {
+        status: ResponseStatus.INTERNAL_SERVER_ERROR,
+        message: 'Error fetching the pets'
       }
-    } else {
-      response = {
-        answer: groups,
-        status: ResponseStatus.OK,
-        message: 'Groups found successfully'
-      }
+      return responses
     }
-
-    return response
-    */
-    // const pets : any = await fetch()
-
-    const responses: Responses = {
+    const pets = response?.res?.data?.getAllPets
+    responses = {
       status: ResponseStatus.OK,
-      message: 'hello!',
-      answer: {
-        message: 'hello!'
-      }
-
+      answer: pets
     }
-    const url = msRoutes.clinicHistory_ms.route + ':' + msRoutes.clinicHistory_ms.port.toString() + '/api/pet'
-
-    const pets = await fetch(url)
-      .then(async (response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok')
-        }
-        return await response.json()
-      })
-    console.log(pets)
     return responses
   }
 }
