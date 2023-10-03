@@ -14,7 +14,7 @@ router.put('')
 // get all pets
 router.get('', clinicHistoryControllers.getAllPets)
 // get pet by id
-router.get('/:id')
+router.get('/:id', clinicHistoryControllers.getPet)
 // delete pet by id
 router.delete('')
 

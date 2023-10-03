@@ -3,12 +3,12 @@ import graphqlFetchQuery from '../../graphqlRequests/graphqlRequest'
 import { GraphqlhandlerResponse, GraphqlStatus } from '../../types/request.types'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
-class GetAllPets {
-  public async getAllPets (): Promise<Responses> {
+class GetPet {
+  public async getPet (id: string): Promise<Responses> {
     let responses: Responses
     let response: GraphqlhandlerResponse | null = null
     try {
-      response = await graphqlFetchQuery(graphqlQueries.getAllPets())
+      response = await graphqlFetchQuery(graphqlQueries.getPet(id))
     } catch (err) {
       console.log(err)
       responses = {
@@ -23,13 +23,13 @@ class GetAllPets {
       }
       return responses
     }
-    const pets = response?.res?.data?.getAllPets
+    const pet = response?.res?.data?.getPetByUsersDBId
     responses = {
       status: ResponseStatus.OK,
-      answer: pets
+      answer: pet
     }
     return responses
   }
 }
 
-export default new GetAllPets()
+export default new GetPet()
