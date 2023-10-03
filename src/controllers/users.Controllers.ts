@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import readAllUsersService from '../services/users/readAllUsers.service'
+import LoginService from '../services/users/login.service'
 
 class UsersController {
   // pet requests
@@ -34,7 +35,10 @@ class UsersController {
   }
 
   // auth requests
-  public async login (_req: Request, _res: Response, _next: NextFunction): Promise<void> {
+  public async login (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const { email, password } = req.body
+    const response = await LoginService.loginService(email, password)
+    res.status(response.status).json(response.answer)
   }
 
   public async register (_req: Request, _res: Response, _next: NextFunction): Promise<void> {

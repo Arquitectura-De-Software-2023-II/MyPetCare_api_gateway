@@ -8,7 +8,10 @@ router.get('/ping', (_req, res) => {
   res.send('pong from users')
 })
 
-// create pet
+// read all users
 router.get('', usersControllers.readAllUsers)
+
+// login
+router.post('/login', usersControllers.login)
 
 export const usersRoutes: Router = router
