@@ -1,4 +1,4 @@
-import { CreatePetDTO } from '../types/clinicHistory.types'
+import { CreatePetDTO, PetInfoDto } from '../types/clinicHistory.types'
 
 function getAllPets (): string {
   return `query{
@@ -75,35 +75,57 @@ function getPetAppointments (id: string): string {
 }
 function createPet (pet: CreatePetDTO): string {
   return `
-  mutation{
-    createPet(createPetDto:{
-        usersDBId: "${pet.usersDBId}"
-    }){
-        usersDBId
-    }
-}`
+    mutation{
+      createPet(createPetDto:{
+          usersDBId: "${pet.usersDBId}"
+      }){
+          usersDBId
+      }
+  }`
 }
 function createPetInfo (pet: CreatePetDTO): string {
   if (pet.PetInfo === undefined) return ''
   return `
-  mutation{
-    createPet(createPetDto:{
-        usersDBId: "${pet.usersDBId}"
-        PetInfo:{
-          weight: ${pet.PetInfo?.weight.toString()}
-          age: ${pet.PetInfo?.age.toString()}
-        }
-    }){
-        usersDBId
-        PetInfo{
-          weight
-          age
-        }
-    }
-}`
+    mutation{
+      createPet(createPetDto:{
+          usersDBId: "${pet.usersDBId}"
+          PetInfo:{
+            weight: ${pet.PetInfo?.weight.toString()}
+            age: ${pet.PetInfo?.age.toString()}
+          }
+      }){
+          usersDBId
+          PetInfo{
+            weight
+            age
+          }
+      }
+  }`
 }
 
+function updatePet (id: string, petInfo: PetInfoDto): string {
+  const mut = `
+    mutation{
+      updatePetByUsersDBId(usersDBId:"${id}",updatePetInfoDto:
+      ${JSON.stringify(petInfo).replace(/"([^(")"]+)":/g, '$1:')}
+      ){
+          usersDBId,
+          PetInfo{
+              weight,
+              age
+          }
+      }
+    }
+  `
+  console.log(mut)
+  return mut
+}
 const graphqlQueries = {
-  getAllPets, getPet, getPetAppointments, createPet, createPetInfo
+  getAllPets,
+  getPet,
+  getPetAppointments,
+  createPet,
+  createPetInfo,
+  updatePet
 }
 export default graphqlQueries

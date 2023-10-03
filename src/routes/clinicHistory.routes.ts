@@ -12,7 +12,7 @@ router.post('', clinicHistoryControllers.createPetInitial)
 // create pet with info
 router.post('/info', clinicHistoryControllers.createPetInfo)
 // update pet info by id
-router.put('')
+router.put('/:id', clinicHistoryControllers.updateInfoPet)
 // get all pets
 router.get('', clinicHistoryControllers.getAllPets)
 // get pet by id
