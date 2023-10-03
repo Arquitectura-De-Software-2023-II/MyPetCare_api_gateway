@@ -1,3 +1,4 @@
+import { CreatePetDTO } from '../types/clinicHistory.types'
 
 function getAllPets (): string {
   return `query{
@@ -72,7 +73,37 @@ function getPetAppointments (id: string): string {
     }
   }`
 }
+function createPet (pet: CreatePetDTO): string {
+  return `
+  mutation{
+    createPet(createPetDto:{
+        usersDBId: "${pet.usersDBId}"
+    }){
+        usersDBId
+    }
+}`
+}
+function createPetInfo (pet: CreatePetDTO): string {
+  if (pet.PetInfo === undefined) return ''
+  return `
+  mutation{
+    createPet(createPetDto:{
+        usersDBId: "${pet.usersDBId}"
+        PetInfo:{
+          weight: ${pet.PetInfo?.weight.toString()}
+          age: ${pet.PetInfo?.age.toString()}
+        }
+    }){
+        usersDBId
+        PetInfo{
+          weight
+          age
+        }
+    }
+}`
+}
+
 const graphqlQueries = {
-  getAllPets, getPet, getPetAppointments
+  getAllPets, getPet, getPetAppointments, createPet, createPetInfo
 }
 export default graphqlQueries

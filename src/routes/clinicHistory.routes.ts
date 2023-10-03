@@ -8,7 +8,9 @@ router.get('/ping', (_req, res) => {
   res.send('pong from clinicHistory')
 })
 // create pet
-router.post('')
+router.post('', clinicHistoryControllers.createPetInitial)
+// create pet with info
+router.post('/info', clinicHistoryControllers.createPetInfo)
 // update pet info by id
 router.put('')
 // get all pets

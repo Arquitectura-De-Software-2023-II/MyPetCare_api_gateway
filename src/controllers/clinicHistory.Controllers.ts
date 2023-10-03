@@ -2,16 +2,27 @@ import { Request, Response, NextFunction } from 'express'
 // import msRoutes from '../config/msRoutes'
 import getAllPetsService from '../services/clinicHistory/getAllPets.service'
 import getPetService from '../services/clinicHistory/getPet.service'
-import { GetPetTypes } from '../types/clinicHistory.types'
+import { CreatePetTypes, GetPetTypes } from '../types/clinicHistory.types'
+import createPetService from '../services/clinicHistory/createPet.service'
 
 class ClinicHistoryController {
   // private static readonly apiRoute = msRoutes.clinicHistory_ms
 
   // basic requests
-  /*
-  public async createPet (req: Request, res: Response, _next: NextFunction): Promise<void> {
+
+  public async createPetInitial (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const pet = req.body
+    const response = await createPetService.createPet(pet, CreatePetTypes.INITIAL)
+    res.status(response.status).json(response.answer)
   }
 
+  public async createPetInfo (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const pet = req.body
+    const response = await createPetService.createPet(pet, CreatePetTypes.INFO)
+    res.status(response.status).json(response.answer)
+  }
+
+  /*
   public async updateInfoPet (req: Request, res: Response, _next: NextFunction): Promise<void> {
   }
   */
