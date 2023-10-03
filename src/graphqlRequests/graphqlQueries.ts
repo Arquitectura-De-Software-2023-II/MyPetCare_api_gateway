@@ -47,7 +47,32 @@ function getPet (id: string): string {
     }
   }`
 }
+function getPetAppointments (id: string): string {
+  return `query{
+    getPetByUsersDBId(usersDBId:"${id}"){
+      usersDBId
+      veterinaryAppointments{
+        appointmentDate
+        id
+        doctorId
+        description
+        prescriptionDrugs{
+          name
+          startDate
+          endDate
+          description
+          periodicity
+        }
+        scheduledAppointments{
+          specialist
+          doctorId
+          priority
+        }
+      }
+    }
+  }`
+}
 const graphqlQueries = {
-  getAllPets, getPet
+  getAllPets, getPet, getPetAppointments
 }
 export default graphqlQueries

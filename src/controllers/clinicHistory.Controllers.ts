@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 // import msRoutes from '../config/msRoutes'
 import getAllPetsService from '../services/clinicHistory/getAllPets.service'
 import getPetService from '../services/clinicHistory/getPet.service'
+import { GetPetTypes } from '../types/clinicHistory.types'
 
 class ClinicHistoryController {
   // private static readonly apiRoute = msRoutes.clinicHistory_ms
@@ -21,7 +22,13 @@ class ClinicHistoryController {
 
   public async getPet (req: Request, res: Response, _next: NextFunction): Promise<void> {
     const { id } = req.params
-    const response = await getPetService.getPet(id)
+    const response = await getPetService.getPet(id, GetPetTypes.GENERIC)
+    res.status(response.status).json(response.answer)
+  }
+
+  public async getPetAppointments (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const { id } = req.params
+    const response = await getPetService.getPet(id, GetPetTypes.APPOINTMENTS)
     res.status(response.status).json(response.answer)
   }
   /*
