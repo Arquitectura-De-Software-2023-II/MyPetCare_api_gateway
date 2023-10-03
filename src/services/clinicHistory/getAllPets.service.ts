@@ -1,7 +1,8 @@
-import { Responses, ResponseStatus } from "../../types/response.types"
+import msRoutes from '../../config/msRoutes'
+import { Responses, ResponseStatus } from '../../types/response.types'
 
 class GetAllPets {
-  public async getAllPets (index: number, offset: number): Promise<Responses> {
+  public async getAllPets (): Promise<Responses> {
     /*
     let response: Responses
     let groups: GroupDocument[] = []
@@ -33,17 +34,28 @@ class GetAllPets {
 
     return response
     */
-    //const pets : any = await fetch()
+    // const pets : any = await fetch()
 
-    let response: Responses
-
-    response = {
+    const responses: Responses = {
       status: ResponseStatus.OK,
-      answer: "hola"
-    }
-   return response 
-  }
+      message: 'hello!',
+      answer: {
+        message: 'hello!'
+      }
 
+    }
+    const url = msRoutes.clinicHistory_ms.route + ':' + msRoutes.clinicHistory_ms.port.toString() + '/api/pet'
+
+    const pets = await fetch(url)
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        return await response.json()
+      })
+    console.log(pets)
+    return responses
+  }
 }
 
 export default new GetAllPets()

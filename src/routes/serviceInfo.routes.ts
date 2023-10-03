@@ -4,7 +4,7 @@ const router = express.Router()
 
 // Test Route
 router.get('/ping', (_req, res) => {
-  res.send(`pong from serviceInfo`)
+  res.send('pong from serviceInfo')
 })
 
 export const serviceInfoRoutes: Router = router

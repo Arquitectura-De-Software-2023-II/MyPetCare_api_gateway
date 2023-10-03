@@ -9,6 +9,6 @@ export enum ResponseStatus {
 
 export interface Responses {
   status: ResponseStatus
-  answer?:  any
+  answer?: any
   message?: string
 }

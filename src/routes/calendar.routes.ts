@@ -4,7 +4,7 @@ const router = express.Router()
 
 // Test Route
 router.get('/ping', (_req, res) => {
-  res.send(`pong from calendar`)
+  res.send('pong from calendar')
 })
 
 export const CalendarRoutes: Router = router
