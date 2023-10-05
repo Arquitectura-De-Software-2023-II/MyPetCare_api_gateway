@@ -1,26 +1,51 @@
 import { Request, Response, NextFunction } from 'express'
 // import msRoutes from '../config/msRoutes'
 import getAllPetsService from '../services/clinicHistory/getAllPets.service'
+import getPetService from '../services/clinicHistory/getPet.service'
+import { CreatePetTypes, GetPetTypes } from '../types/clinicHistory.types'
+import createPetService from '../services/clinicHistory/createPet.service'
+import updatePetService from '../services/clinicHistory/updatePet.service'
 
 class ClinicHistoryController {
   // private static readonly apiRoute = msRoutes.clinicHistory_ms
 
   // basic requests
-  /*
-  public async createPet (req: Request, res: Response, _next: NextFunction): Promise<void> {
+
+  public async createPetInitial (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const pet = req.body
+    const response = await createPetService.createPet(pet, CreatePetTypes.INITIAL)
+    res.status(response.status).json(response.answer)
+  }
+
+  public async createPetInfo (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const pet = req.body
+    const response = await createPetService.createPet(pet, CreatePetTypes.INFO)
+    res.status(response.status).json(response.answer)
   }
 
   public async updateInfoPet (req: Request, res: Response, _next: NextFunction): Promise<void> {
-  }
-  */
-  public async getAllPets (_req: Request, res: Response, _next: NextFunction): Promise<void> {
-    const pets = await getAllPetsService.getAllPets()
-    res.status(pets.status).json(pets.answer)
-  }
-  /*
-  public async getPet (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const { id } = req.params
+    const response = await updatePetService.updatePet(id, req.body)
+    res.status(response.status).json(response.answer)
   }
 
+  public async getAllPets (_req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const response = await getAllPetsService.getAllPets()
+    res.status(response.status).json(response.answer)
+  }
+
+  public async getPet (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const { id } = req.params
+    const response = await getPetService.getPet(id, GetPetTypes.GENERIC)
+    res.status(response.status).json(response.answer)
+  }
+
+  public async getPetAppointments (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const { id } = req.params
+    const response = await getPetService.getPet(id, GetPetTypes.APPOINTMENTS)
+    res.status(response.status).json(response.answer)
+  }
+  /*
   public async deletePet (req: Request, res: Response, _next: NextFunction): Promise<void> {
   }
 
