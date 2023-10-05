@@ -2,7 +2,7 @@ import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
 class CreateEvents {
-  public async CreateEvent (data: any): Promise<Responses> {
+  public async CreateEventService (data: any): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.OK,
       message: 'hello!',

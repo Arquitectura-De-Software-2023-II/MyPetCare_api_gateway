@@ -11,30 +11,30 @@ class calendarController {
 
   public async createEvent (req: Request, res: Response, _next: NextFunction): Promise<void> {
     const data = JSON.stringify(req.body)
-    const event = await CreateEvents.CreateEvent(data)
+    const event = await CreateEvents.CreateEventService(data)
     res.status(event.status).json(event.answer)
   }
 
   public async updateEvent (req: Request, res: Response, _next: NextFunction): Promise<void> {
     const data = JSON.stringify(req.body)
-    const event = await UpdateEvents.UpdateEvent(data, req.params.id)
+    const event = await UpdateEvents.UpdateEventService(data, req.params.id)
     res.status(event.status).json(event.answer)
   }
 
   public async indexEvent (_req: Request, res: Response, _next: NextFunction): Promise<void> {
-    const event = await IndexEvents.IndexEvents()
+    const event = await IndexEvents.IndexEventsService()
     res.status(event.status).json(event.answer)
   }
 
   public async showSingleEvent (req: Request, res: Response, _next: NextFunction): Promise<void> {
     const id = req.params.id
-    const event = await ShowEvents.ShowEvent(id)
+    const event = await ShowEvents.ShowEventService(id)
     res.status(event.status).json(event.answer)
   }
 
   public async destroyEvent (req: Request, res: Response, _next: NextFunction): Promise<void> {
     const id = req.params.id
-    const event = await DestroyEvents.DestroyEvent(id)
+    const event = await DestroyEvents.DestroyEventService(id)
     res.status(event.status).json(event.answer)
   }
 }

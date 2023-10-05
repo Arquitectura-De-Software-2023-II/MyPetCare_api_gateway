@@ -2,7 +2,7 @@ import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
 class IndexEvents {
-  public async IndexEvents (): Promise<Responses> {
+  public async IndexEventsService (): Promise<Responses> {
     /*
     let response: Responses
     let groups: GroupDocument[] = []

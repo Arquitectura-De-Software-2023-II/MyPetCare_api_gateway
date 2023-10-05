@@ -2,7 +2,7 @@ import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
 class DestroyEvents {
-  public async DestroyEvent (id: string): Promise<Responses> {
+  public async DestroyEventService (id: string): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.OK,
       message: 'hello!',
