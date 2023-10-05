@@ -21,12 +21,22 @@ class LoginService {
         email,
         password
       })
-    // Switch message options
     })
       .then(async (response) => {
         if (!response.ok) {
-          return {
-            error: 'user not found or invalid password'
+          const error = await response.json()
+          if (error.error === 'Usuario no encontrado') {
+            return {
+              error: 'Usuario no encontrado'
+            }
+          } else if (error.error === 'Constraseña invalida') {
+            return {
+              error: 'Contraseña invalida'
+            }
+          } else {
+            return {
+              error: 'Credenciales invalidas'
+            }
           }
         }
         return await response.json()
