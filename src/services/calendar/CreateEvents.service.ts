@@ -1,7 +1,7 @@
 import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
-class CreateEvents {
+class CreateEventsService {
   public async CreateEventService (data: any): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.OK,
@@ -28,9 +28,9 @@ class CreateEvents {
         return await response.json()
       })
     console.log(events)
-    responses.answer = 'Evento creado correctamente'
+    responses.answer = 'Evento creado correctamente en el Calendar'
     return responses
   }
 }
 
-export default new CreateEvents()
+export default new CreateEventsService()

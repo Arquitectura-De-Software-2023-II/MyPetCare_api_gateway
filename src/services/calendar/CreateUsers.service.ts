@@ -1,8 +1,8 @@
 import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
-class UpdateEventsService {
-  public async UpdateEventService (data: any, id: string): Promise<Responses> {
+class CreateUsersService {
+  public async CreateUserService (data: any): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.OK,
       message: 'hello!',
@@ -11,10 +11,10 @@ class UpdateEventsService {
       }
 
     }
-    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/events/' + id
+    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/clients/'
 
     const events = await fetch(url, {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -22,14 +22,15 @@ class UpdateEventsService {
     })
       .then(async (response) => {
         if (!response.ok) {
+          console.log(response)
           throw new Error('Network response was not ok')
         }
         return await response.json()
       })
     console.log(events)
-    responses.answer = events
+    responses.answer = 'Usuario agregado correctamente al Calendar'
     return responses
   }
 }
 
-export default new UpdateEventsService()
+export default new CreateUsersService()

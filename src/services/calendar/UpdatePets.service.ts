@@ -1,18 +1,25 @@
 import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
-class ShowEventsService {
-  public async ShowEventService (id: string): Promise<Responses> {
+class UpdatePetsService {
+  public async UpdatePetService (data: any, id: string): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.OK,
       message: 'hello!',
       answer: {
         message: 'hello!'
       }
-    }
-    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/events/' + id
 
-    const events = await fetch(url)
+    }
+    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/pets/' + id
+
+    const events = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
       .then(async (response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok')
@@ -25,4 +32,4 @@ class ShowEventsService {
   }
 }
 
-export default new ShowEventsService()
+export default new UpdatePetsService()
