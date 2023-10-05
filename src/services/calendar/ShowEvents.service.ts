@@ -1,7 +1,7 @@
 import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
-class ShowEvents {
+class ShowEventsService {
   public async ShowEventService (id: string): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.OK,
@@ -19,10 +19,9 @@ class ShowEvents {
         }
         return await response.json()
       })
-    console.log(events)
     responses.answer = events
     return responses
   }
 }
 
-export default new ShowEvents()
+export default new ShowEventsService()

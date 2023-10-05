@@ -1,7 +1,7 @@
 import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
-class IndexEvents {
+class IndexEventsService {
   public async IndexEventsService (): Promise<Responses> {
     /*
     let response: Responses
@@ -53,10 +53,9 @@ class IndexEvents {
         }
         return await response.json()
       })
-    console.log(events)
     responses.answer = events
     return responses
   }
 }
 
-export default new IndexEvents()
+export default new IndexEventsService()
