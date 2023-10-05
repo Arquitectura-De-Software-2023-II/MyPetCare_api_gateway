@@ -1,8 +1,8 @@
 import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
-class RegisterService {
-  public async registerService (request: { name: string, email: string, password: string, role: string }): Promise<Responses> {
+class CreatePetService {
+  public async createPetService (request: { name: string, age: bigint, color: string, breed: string, owner: string }): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.OK,
       message: 'hello!',
@@ -12,7 +12,7 @@ class RegisterService {
     }
 
     console.log(msRoutes.users_ms.route, msRoutes.users_ms.port.toString())
-    const url: string = msRoutes.users_ms.route + msRoutes.users_ms.port.toString() + '/user/register'
+    const url: string = msRoutes.users_ms.route + msRoutes.users_ms.port.toString() + '/pet/post'
 
     const options = {
       method: 'POST',
@@ -25,16 +25,7 @@ class RegisterService {
     const events = await fetch(url, options)
       .then(async (response) => {
         if (!response.ok) {
-          const error = await response.json()
-          if (error.error === 'Email ya registrado') {
-            return {
-              error: 'Email ya registrado'
-            }
-          } else {
-            return {
-              error: 'Credenciales Invalidas'
-            }
-          }
+          throw new Error('Network response was not ok')
         }
         return await response.json()
       })
@@ -48,4 +39,4 @@ class RegisterService {
   }
 }
 
-export default new RegisterService()
+export default new CreatePetService()

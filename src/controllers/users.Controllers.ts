@@ -5,10 +5,14 @@ import UpdateUserService from '../services/users/updateUser.service'
 import DeleteUserService from '../services/users/deleteUser.service'
 import LoginService from '../services/users/login.service'
 import RegisterService from '../services/users/register.service'
+import CreatePetService from '../services/users/createPet.service'
 
 class UsersController {
   // pet requests
-  public async createPet (_req: Request, _res: Response, _next: NextFunction): Promise<void> {
+  public async createPet (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const { name, age, color, breed, owner } = req.body
+    const response = await CreatePetService.createPetService({ name, age, color, breed, owner })
+    res.status(response.status).json(response.answer)
   }
 
   public async updatePet (_req: Request, _res: Response, _next: NextFunction): Promise<void> {
@@ -56,8 +60,8 @@ class UsersController {
 
   public async register (req: Request, res: Response, _next: NextFunction): Promise<void> {
     console.log(req.body)
-    const { name, email, password } = req.body
-    const response = await RegisterService.registerService({ name, email, password })
+    const { name, email, password, role } = req.body
+    const response = await RegisterService.registerService({ name, email, password, role })
     res.status(response.status).json(response.answer)
   }
 }

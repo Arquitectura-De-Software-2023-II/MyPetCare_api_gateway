@@ -2,11 +2,12 @@
 import express, { Router } from 'express'
 import usersControllers from '../controllers/users.Controllers'
 import AuthenticationMiddlewares from '../middlewares/authentication.middleware'
+
 const router = express.Router()
 
 // Test Route
-router.get('/ping', (_req, res) => {
-  res.send('pong from users')
+router.get('/ping', AuthenticationMiddlewares.getUserData, (_req, res) => {
+  res.send(_req.body)
 })
 
 // login
@@ -26,5 +27,8 @@ router.delete('/deleteuser', usersControllers.deleteUser)
 
 // update a user
 router.put('/putuser', usersControllers.updateUser)
+
+// create a pet
+router.post('/postpet', usersControllers.createPet)
 
 export const usersRoutes: Router = router
