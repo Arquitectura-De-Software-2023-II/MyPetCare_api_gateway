@@ -1,8 +1,8 @@
 import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
-class DestroyEventsService {
-  public async DestroyEventService (id: string): Promise<Responses> {
+class DestroyPetsService {
+  public async DestroyPetService (id: string): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.OK,
       message: 'hello!',
@@ -11,7 +11,7 @@ class DestroyEventsService {
       }
 
     }
-    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/events/' + id
+    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/pets/' + id
 
     const events = await fetch(url, { method: 'DELETE' })
       .then(async (response) => {
@@ -20,9 +20,9 @@ class DestroyEventsService {
         }
         return await response.json()
       })
-    responses.answer = events.error
+    responses.answer = events
     return responses
   }
 }
 
-export default new DestroyEventsService()
+export default new DestroyPetsService()

@@ -1,8 +1,8 @@
 import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
-class DestroyEventsService {
-  public async DestroyEventService (id: string): Promise<Responses> {
+class CreateUsersService {
+  public async CreateUserService (data: any): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.OK,
       message: 'hello!',
@@ -11,11 +11,18 @@ class DestroyEventsService {
       }
 
     }
-    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/events/' + id
+    const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/clients/'
 
-    const events = await fetch(url, { method: 'DELETE' })
+    const events = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
       .then(async (response) => {
         if (!response.ok) {
+          console.log(response)
           throw new Error('Network response was not ok')
         }
         return await response.json()
@@ -25,4 +32,4 @@ class DestroyEventsService {
   }
 }
 
-export default new DestroyEventsService()
+export default new CreateUsersService()

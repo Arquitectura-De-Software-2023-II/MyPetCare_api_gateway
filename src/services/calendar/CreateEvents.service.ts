@@ -1,8 +1,8 @@
 import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
-class CreateEvents {
-  public async CreateEvent (data: any): Promise<Responses> {
+class CreateEventsService {
+  public async CreateEventService (data: any): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.OK,
       message: 'hello!',
@@ -27,10 +27,9 @@ class CreateEvents {
         }
         return await response.json()
       })
-    console.log(events)
-    responses.answer = 'Evento creado correctamente'
+    responses.answer = events.error
     return responses
   }
 }
 
-export default new CreateEvents()
+export default new CreateEventsService()
