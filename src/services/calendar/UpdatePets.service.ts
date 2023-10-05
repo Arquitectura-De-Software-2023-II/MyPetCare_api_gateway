@@ -26,8 +26,7 @@ class UpdatePetsService {
         }
         return await response.json()
       })
-    console.log(events)
-    responses.answer = events
+    responses.answer = events.error
     return responses
   }
 }

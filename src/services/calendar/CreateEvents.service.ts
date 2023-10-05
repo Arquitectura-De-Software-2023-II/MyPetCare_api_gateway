@@ -27,8 +27,7 @@ class CreateEventsService {
         }
         return await response.json()
       })
-    console.log(events)
-    responses.answer = 'Evento creado correctamente en el Calendar'
+    responses.answer = events.error
     return responses
   }
 }

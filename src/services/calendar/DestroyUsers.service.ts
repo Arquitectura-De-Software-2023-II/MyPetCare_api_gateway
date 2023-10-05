@@ -20,7 +20,7 @@ class DestroyUsersService {
         }
         return await response.json()
       })
-    responses.answer = events
+    responses.answer = events.error
     return responses
   }
 }

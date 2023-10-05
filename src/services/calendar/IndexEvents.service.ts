@@ -53,7 +53,6 @@ class IndexEventsService {
         }
         return await response.json()
       })
-    console.log(events)
     responses.answer = events
     return responses
   }

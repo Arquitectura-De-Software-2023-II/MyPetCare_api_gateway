@@ -27,8 +27,7 @@ class CreatePetsService {
         }
         return await response.json()
       })
-    console.log(events)
-    responses.answer = 'Mascota agregada correctamente al Calendar'
+    responses.answer = events.error
     return responses
   }
 }

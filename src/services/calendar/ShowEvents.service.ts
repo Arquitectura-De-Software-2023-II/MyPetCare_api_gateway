@@ -19,7 +19,6 @@ class ShowEventsService {
         }
         return await response.json()
       })
-    console.log(events)
     responses.answer = events
     return responses
   }

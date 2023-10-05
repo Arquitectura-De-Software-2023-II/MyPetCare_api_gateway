@@ -27,8 +27,7 @@ class CreateUsersService {
         }
         return await response.json()
       })
-    console.log(events)
-    responses.answer = 'Usuario agregado correctamente al Calendar'
+    responses.answer = events.error
     return responses
   }
 }
