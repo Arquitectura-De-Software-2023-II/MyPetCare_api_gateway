@@ -7,6 +7,7 @@ class AuthenticationMiddlewares {
   }
 
   public async getUserData (req: Request, res: Response, next: NextFunction): Promise<void> {
+    console.log('enter')
     console.log(req.headers)
     if (req.headers.authorization === undefined) {
       res.status(401).json({ message: 'Unauthorized' })
@@ -14,26 +15,32 @@ class AuthenticationMiddlewares {
     }
     const accessToken = req.headers.authorization?.split(' ')[1]
 
-    const url: string = msRoutes.users_ms.route + msRoutes.users_ms.port.toString() + '/user/login'
-
+    const url: string = msRoutes.users_ms.route + msRoutes.users_ms.port.toString() + '/user/verify'
+    console.log(url)
+    console.log(accessToken)
     // fetch users api
 
     fetch(url, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${accessToken === undefined ? '' : accessToken}`
       }
-    }).then(async (response) => {
-      void response.json()?.then((data) => {
-        data.username = data.nickname
-        req.body.user = data
-        next()
-      }).catch((err) => {
+    })
+      .then(async (response) => {
+        void response.json()
+          ?.then((data) => {
+            req.body.user = data
+            next()
+          })
+          .catch((err) => {
+            console.log('🚀 ~ file: authentication.middleware.ts:35 ~ AuthenticationMiddlewares ~ getUserData ~ err:', err)
+            res.status(500).json({ message: err.message })
+          })
+      })
+      .catch((err) => {
+        console.log('🚀 ~ file: authentication.middleware.ts:40 ~ AuthenticationMiddlewares ~ getUserData ~ err:', err)
         res.status(500).json({ message: err.message })
       })
-    }).catch((err) => {
-      res.status(500).json({ message: err.message })
-    })
   }
 }
 

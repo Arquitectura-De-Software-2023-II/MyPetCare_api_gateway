@@ -7,7 +7,7 @@ const router = express.Router()
 
 // Test Route
 router.get('/ping', AuthenticationMiddlewares.getUserData, (_req, res) => {
-  res.send(_req.body)
+  res.status(200).send(_req.body)
 })
 
 // login
