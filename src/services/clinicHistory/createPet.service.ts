@@ -46,6 +46,7 @@ class CreatePet {
       return responses
     }
     const pet = response?.res?.data?.createPet
+    console.log(pet)
     responses = {
       status: ResponseStatus.OK,
       answer: pet

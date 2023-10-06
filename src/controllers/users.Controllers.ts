@@ -10,8 +10,8 @@ import CreatePetService from '../services/users/createPet.service'
 class UsersController {
   // pet requests
   public async createPet (req: Request, res: Response, _next: NextFunction): Promise<void> {
-    const { name, age, color, breed, owner } = req.body
-    const response = await CreatePetService.createPetService({ name, age, color, breed, owner })
+    const { name, age, color, breed } = req.body
+    const response = await CreatePetService.createPetService({ name, age, color, breed, owner: req.body.user.name })
     res.status(response.status).json(response.answer)
   }
 

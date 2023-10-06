@@ -29,6 +29,6 @@ router.delete('/deleteuser', usersControllers.deleteUser)
 router.put('/putuser', usersControllers.updateUser)
 
 // create a pet
-router.post('/postpet', usersControllers.createPet)
+router.post('/postpet', AuthenticationMiddlewares.getUserData, usersControllers.createPet)
 
 export const usersRoutes: Router = router

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import msRoutes from '../config/msRoutes'
+import { ResponseStatus } from '../types/response.types'
 
 class AuthenticationMiddlewares {
   public async doom (_req: Request, res: Response, _next: NextFunction): Promise<void> {
@@ -27,19 +28,22 @@ class AuthenticationMiddlewares {
       }
     })
       .then(async (response) => {
+        if (!response.ok) {
+          const error = await response.json()
+          throw new Error(error.error)
+        }
         void response.json()
           ?.then((data) => {
             req.body.user = data
             next()
           })
           .catch((err) => {
-            console.log('🚀 ~ file: authentication.middleware.ts:35 ~ AuthenticationMiddlewares ~ getUserData ~ err:', err)
             res.status(500).json({ message: err.message })
           })
       })
       .catch((err) => {
-        console.log('🚀 ~ file: authentication.middleware.ts:40 ~ AuthenticationMiddlewares ~ getUserData ~ err:', err)
-        res.status(500).json({ message: err.message })
+        console.log(err)
+        res.status(ResponseStatus.BAD_REQUEST).json({ message: 'unautorized' })
       })
   }
 }
