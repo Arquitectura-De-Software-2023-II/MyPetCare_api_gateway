@@ -11,6 +11,10 @@ import DestroyUsersService from '../services/calendar/DestroyUsers.service'
 import CreatePetsService from '../services/calendar/CreatePets.service'
 import UpdatePetsService from '../services/calendar/UpdatePets.service'
 import DestroyPetsService from '../services/calendar/DestroyPets.service'
+import ShowUsersService from '../services/calendar/ShowUsers.service'
+import ShowPetsService from '../services/calendar/ShowPets.service'
+import IndexUsersService from '../services/calendar/IndexUsers.service'
+import IndexPetsService from '../services/calendar/IndexPets.service'
 class calendarController {
   // private static readonly apiRoute = msRoutes.calendar_ms
   // basic requests for events
@@ -56,6 +60,17 @@ class calendarController {
     res.status(event.status).json(event.answer)
   }
 
+  public async showSingleUser (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const id = req.params.id
+    const event = await ShowUsersService.ShowUserService(id)
+    res.status(event.status).json(event.answer)
+  }
+
+  public async indexUser (_req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const event = await IndexUsersService.IndexUserService()
+    res.status(event.status).json(event.answer)
+  }
+
   public async destroyUser (req: Request, res: Response, _next: NextFunction): Promise<void> {
     const id = req.params.id
     const event = await DestroyUsersService.DestroyUserService(id)
@@ -71,6 +86,17 @@ class calendarController {
   public async updatePet (req: Request, res: Response, _next: NextFunction): Promise<void> {
     const data = JSON.stringify(req.body)
     const event = await UpdatePetsService.UpdatePetService(data, req.params.id)
+    res.status(event.status).json(event.answer)
+  }
+
+  public async showSinglePet (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const id = req.params.id
+    const event = await ShowPetsService.ShowPetService(id)
+    res.status(event.status).json(event.answer)
+  }
+
+  public async indexPet (_req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const event = await IndexPetsService.IndexPetService()
     res.status(event.status).json(event.answer)
   }
 

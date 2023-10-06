@@ -22,10 +22,18 @@ router.post('/users/', calendarController.createUser)
 router.put('/users/:id', calendarController.updateUser)
 // delete user
 router.delete('/users/:id', calendarController.destroyUser)
+// get user by id
+router.get('/users/:id', calendarController.showSingleUser)
+// get all users
+router.get('/users/', calendarController.indexUser)
 // create pet
 router.post('/pets/', calendarController.createPet)
 // update pet info
 router.put('/pets/:id', calendarController.updatePet)
 // delete pet
 router.delete('/pets/:id', calendarController.destroyPet)
+// get pet by id
+router.get('/pets/:id', calendarController.showSinglePet)
+// get all pets
+router.get('/pets/', calendarController.indexPet)
 export const CalendarRoutes: Router = router
