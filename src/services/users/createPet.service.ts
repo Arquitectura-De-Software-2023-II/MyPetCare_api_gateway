@@ -4,7 +4,7 @@ import { Responses, ResponseStatus } from '../../types/response.types'
 import createPetService from '../clinicHistory/createPet.service'
 
 class CreatePetService {
-  public async createPetService (request: { name: string, age: bigint, color: string, breed: string, owner: string }): Promise<Responses> {
+  public async createPetService (request: { name: string, age: bigint, color: string, breed: string, animal: string, owner: string }): Promise<Responses> {
     const responses: Responses = {
       status: ResponseStatus.INTERNAL_SERVER_ERROR,
       message: 'hello!',
@@ -41,13 +41,18 @@ class CreatePetService {
         console.log(err)
         responses.status = ResponseStatus.INTERNAL_SERVER_ERROR
       })
+    responses.answer = answer
     // save pet history
     console.log('🚀 ~ file: createPet.service.ts:29 ~ CreatePetService ~ createPetService ~ answer :', answer._id)
     await createPetService.createPet({ usersDBId: answer._id }, CreatePetTypes.INITIAL)
       .then(async (res) => {
-        console.log('jasbdfjkbasdfhajdfhajdhfkjadfkj')
         responses.status = res.status
         console.log(res)
+        if (res.status !== ResponseStatus.CREATED && res.status !== ResponseStatus.OK) {
+          responses.answer = { answer: 'err saving clini history' }
+          responses.message = 'err saving clini history'
+          // TODO delete pet from users db
+        }
       })
       .catch((err) => {
         console.log(err)
@@ -60,7 +65,6 @@ class CreatePetService {
       responses.answer = { answer: answer.error }
     }
     console.log(answer)
-    responses.answer = answer
     return responses
   }
 }

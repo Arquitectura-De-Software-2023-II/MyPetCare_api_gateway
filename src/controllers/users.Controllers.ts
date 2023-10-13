@@ -6,16 +6,20 @@ import DeleteUserService from '../services/users/deleteUser.service'
 import LoginService from '../services/users/login.service'
 import RegisterService from '../services/users/register.service'
 import CreatePetService from '../services/users/createPet.service'
+import getAllUserPetsService from '../services/users/getAllUserPets.service'
 
 class UsersController {
   // pet requests
   public async createPet (req: Request, res: Response, _next: NextFunction): Promise<void> {
-    const { name, age, color, breed } = req.body
-    const response = await CreatePetService.createPetService({ name, age, color, breed, owner: req.body.user.name })
+    const { name, age, color, breed, animal, user } = req.body
+    const response = await CreatePetService.createPetService({ name, age, color, breed, animal, owner: user.id })
     res.status(response.status).json(response.answer)
   }
 
-  public async updatePet (_req: Request, _res: Response, _next: NextFunction): Promise<void> {
+  public async getAllUserPets (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const { user } = req.body
+    const response = await getAllUserPetsService.getAllUsersPet(user.id)
+    res.status(response.status).json(response.answer)
   }
 
   public async readAllPets (_req: Request, _res: Response, _next: NextFunction): Promise<void> {

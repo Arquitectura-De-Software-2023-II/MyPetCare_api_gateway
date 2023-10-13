@@ -31,4 +31,7 @@ router.put('/putuser', usersControllers.updateUser)
 // create a pet
 router.post('/postpet', AuthenticationMiddlewares.getUserData, usersControllers.createPet)
 
+// get all pets from a user
+router.get('/getallpets', AuthenticationMiddlewares.getUserData, usersControllers.getAllUserPets)
+
 export const usersRoutes: Router = router
