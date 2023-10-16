@@ -24,6 +24,7 @@ class LoginService {
     })
       .then(async (response) => {
         if (!response.ok) {
+          responses.status = ResponseStatus.BAD_REQUEST
           const error = await response.json()
           if (error.error === 'Usuario no encontrado') {
             return {
