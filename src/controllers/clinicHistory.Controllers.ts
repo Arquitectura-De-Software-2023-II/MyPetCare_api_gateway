@@ -45,6 +45,12 @@ class ClinicHistoryController {
     const response = await getPetService.getPet(id, GetPetTypes.APPOINTMENTS)
     res.status(response.status).json(response.answer)
   }
+
+  public async getPetVaccines (req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const { id } = req.params
+    const response = await getPetService.getPet(id, GetPetTypes.VACCINES)
+    res.status(response.status).json(response.answer)
+  }
   /*
   public async deletePet (req: Request, res: Response, _next: NextFunction): Promise<void> {
   }
