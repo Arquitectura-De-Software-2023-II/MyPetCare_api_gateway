@@ -27,10 +27,12 @@ class RegisterService {
         if (!response.ok) {
           const error = await response.json()
           if (error.error === 'Email ya registrado') {
+            responses.status = ResponseStatus.BAD_REQUEST
             return {
               error: 'Email ya registrado'
             }
           } else {
+            responses.status = ResponseStatus.BAD_REQUEST
             return {
               error: 'Credenciales Invalidas'
             }

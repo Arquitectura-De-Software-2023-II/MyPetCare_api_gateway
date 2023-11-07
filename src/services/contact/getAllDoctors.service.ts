@@ -29,9 +29,7 @@ class GetAllDoctors {
       responses = {
         status: ResponseStatus.OK,
         message: 'Get all doctors successful!!',
-        answer: {
-          fetched
-        }
+        answer: fetched
       }
     }
 
