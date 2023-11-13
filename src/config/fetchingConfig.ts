@@ -3,7 +3,13 @@ const graphqlConfiguration = {
   headers: { 'Content-Type': 'application/json' }
 }
 
+const fetchNewsConfiguration = {
+  method: 'GET',
+  headers: { 'Content-Type': 'application/json' }
+}
+
 const fetchConfiguration = {
-  graphqlConfiguration
+  graphqlConfiguration,
+  fetchNewsConfiguration
 }
 export default fetchConfiguration

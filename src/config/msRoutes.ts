@@ -5,6 +5,7 @@ interface msRoute {
   port: number
 }
 const localhost = 'http://localhost'
+const api_news = 'https://newsapi.org/v2/everything'
 const env = process.env
 
 /*
@@ -34,5 +35,11 @@ const users_ms: msRoute = {
   route: env.USERS_MS_ROUTE ?? localhost,
   port: parseInt(env.USERS_MS_PORT ?? '3004')
 }
-const msRoutes = { calendar_ms, clinicHistory_ms, contact_ms, users_ms }
+
+const news_ms = {
+  route: env.NEWS_MS_ROUTE ?? api_news,
+  key: env.NEWS_API_KEY ?? ''
+}
+
+const msRoutes = { calendar_ms, clinicHistory_ms, contact_ms, users_ms, news_ms }
 export default msRoutes
