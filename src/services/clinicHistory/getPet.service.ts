@@ -17,6 +17,9 @@ class GetPet {
       case GetPetTypes.APPOINTMENTS:
         query = graphqlQueries.getPetAppointments(id)
         break
+      case GetPetTypes.VACCINES:
+        query = graphqlQueries.getPetVaccines(id)
+        break
       default:
         break
     }
