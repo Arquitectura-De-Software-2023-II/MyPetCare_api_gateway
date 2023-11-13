@@ -19,11 +19,14 @@ router.get('', clinicHistoryControllers.getAllPets)
 router.get('/:id', clinicHistoryControllers.getPet)
 // get pet appointments by id
 router.get('/:id/appointments', clinicHistoryControllers.getPetAppointments)
+
+// get pet vaccines by id
+router.get('/:id/vaccines', clinicHistoryControllers.getPetVaccines)
 /*
 TODO: get pet info - vaccines - disseases by id
 // get pet info by id
 router.get('/:id/appointments', clinicHistoryControllers.getPetAppointments)
-// get pet vaccines by id
+//get pet vaccines by id
 router.get('/:id/appointments', clinicHistoryControllers.getPetAppointments)
 // get pet disseases by id
 router.get('/:id/appointments', clinicHistoryControllers.getPetAppointments)
