@@ -1,4 +1,3 @@
-import msRoutes from '../../config/msRoutes'
 import { Responses, ResponseStatus } from '../../types/response.types'
 
 class LoginService {
@@ -11,7 +10,7 @@ class LoginService {
       }
     }
 
-    const url: string = msRoutes.users_ms.route + msRoutes.users_ms.port.toString() + '/user/login'
+    const url: string = 'https://mpc-users-ms.onrender.com' + '/user/login'
 
     const fetchData = await fetch(url, {
       method: 'POST',

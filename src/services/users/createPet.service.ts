@@ -13,7 +13,7 @@ class CreatePetService {
       }
     }
     console.log(msRoutes.users_ms.route, msRoutes.users_ms.port.toString())
-    const url: string = msRoutes.users_ms.route + msRoutes.users_ms.port.toString() + '/pet/post'
+    const url: string = 'https://mpc-users-ms.onrender.com' + '/pet/post'
 
     const options = {
       method: 'POST',

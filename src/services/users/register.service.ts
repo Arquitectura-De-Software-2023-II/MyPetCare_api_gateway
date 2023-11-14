@@ -12,7 +12,7 @@ class RegisterService {
     }
 
     console.log(msRoutes.users_ms.route, msRoutes.users_ms.port.toString())
-    const url: string = msRoutes.users_ms.route + msRoutes.users_ms.port.toString() + '/user/register'
+    const url: string = 'https://mpc-users-ms.onrender.com' + '/user/register'
 
     const options = {
       method: 'POST',

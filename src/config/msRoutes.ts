@@ -3,6 +3,7 @@
 interface msRoute {
   route: string
   port: number
+  deployed?: string
 }
 const localhost = 'http://localhost'
 const api_news = 'https://newsapi.org/v2/everything'
@@ -33,7 +34,8 @@ const contact_ms: msRoute = {
 }
 const users_ms: msRoute = {
   route: env.USERS_MS_ROUTE ?? localhost,
-  port: parseInt(env.USERS_MS_PORT ?? '3004')
+  port: parseInt(env.USERS_MS_PORT ?? '3004'),
+  deployed: 'https://mpc-users-ms.onrender.com'
 }
 
 const news_ms = {
