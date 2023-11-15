@@ -45,7 +45,7 @@ class IndexEventsService {
 
     }
     const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/events/'
-
+    console.log(url)
     const events = await fetch(url)
       .then(async (response) => {
         if (!response.ok) {

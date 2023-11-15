@@ -12,7 +12,6 @@ class DestroyUsersService {
 
     }
     const url = msRoutes.calendar_ms.route + ':' + msRoutes.calendar_ms.port.toString() + '/api/v1/clients/' + id
-
     const events = await fetch(url, { method: 'DELETE' })
       .then(async (response) => {
         if (!response.ok) {
