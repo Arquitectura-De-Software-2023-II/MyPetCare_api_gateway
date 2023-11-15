@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express'
-import msRoutes from '../config/msRoutes'
 import { ResponseStatus } from '../types/response.types'
 
 class AuthenticationMiddlewares {
@@ -16,7 +15,7 @@ class AuthenticationMiddlewares {
     }
     const accessToken = req.headers.authorization?.split(' ')[1]
 
-    const url: string = msRoutes.users_ms.route + msRoutes.users_ms.port.toString() + '/user/verify'
+    const url: string = 'https://mpc-users-ms.onrender.com' + '/user/verify'
     console.log(url)
     console.log(accessToken)
     // fetch users api

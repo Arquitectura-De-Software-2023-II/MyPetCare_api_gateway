@@ -30,7 +30,7 @@ class GetPet {
       console.log(err)
       responses = {
         status: ResponseStatus.INTERNAL_SERVER_ERROR,
-        message: 'Error fetching the pets'
+        message: 'Error fetching the pets (catch)'
       }
     }
     if (response?.status === GraphqlStatus.ERROR) {
@@ -38,6 +38,7 @@ class GetPet {
         status: ResponseStatus.INTERNAL_SERVER_ERROR,
         message: 'Error fetching the pets'
       }
+      console.log(response.res?.errors)
       return responses
     }
     const pet = response?.res?.data?.getPetByUsersDBId
