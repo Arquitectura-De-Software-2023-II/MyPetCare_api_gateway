@@ -22,6 +22,7 @@ class UpdateEventsService {
     })
       .then(async (response) => {
         if (!response.ok) {
+          console.log(JSON.stringify(data))
           throw new Error('Network response was not ok')
         }
         return await response.json()

@@ -22,7 +22,7 @@ class CreateEventsService {
     })
       .then(async (response) => {
         if (!response.ok) {
-          console.log(response)
+          console.log('response')
           throw new Error('Network response was not ok')
         }
         return await response.json()
