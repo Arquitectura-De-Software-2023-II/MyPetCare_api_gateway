@@ -1,5 +1,5 @@
 import { Responses, ResponseStatus } from '../../types/response.types'
-
+import msRoutes from '../../config/msRoutes'
 class UpdateUserService {
   public async updateUserService (email: string, password: string): Promise<Responses> {
     const responses: Responses = {
@@ -10,7 +10,7 @@ class UpdateUserService {
       }
     }
 
-    const url: string = 'https://mpc-users-ms.onrender.com' + '/user/put'
+    const url: string = `${msRoutes.users_ms.route}:${msRoutes.users_ms.port}` + '/user/put'
 
     const fetchData = await fetch(url, {
       method: 'PUT',

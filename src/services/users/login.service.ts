@@ -1,4 +1,5 @@
 import { Responses, ResponseStatus } from '../../types/response.types'
+import msRoutes from '../../config/msRoutes'
 
 class LoginService {
   public async loginService (email: string, password: string): Promise<Responses> {
@@ -10,7 +11,7 @@ class LoginService {
       }
     }
 
-    const url: string = 'https://mpc-users-ms.onrender.com' + '/user/login'
+    const url: string = `${msRoutes.users_ms.route}:${msRoutes.users_ms.port}` + '/user/login'
 
     const fetchData = await fetch(url, {
       method: 'POST',

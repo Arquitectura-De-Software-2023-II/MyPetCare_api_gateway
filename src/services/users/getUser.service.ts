@@ -12,7 +12,7 @@ class GetUserService {
     }
 
     console.log(msRoutes.users_ms.route, msRoutes.users_ms.port.toString())
-    const url: string = 'https://mpc-users-ms.onrender.com' + '/user/get'
+    const url: string = `${msRoutes.users_ms.route}:${msRoutes.users_ms.port}` + '/user/get'
 
     const fetchData = await fetch(url, {
       method: 'POST',

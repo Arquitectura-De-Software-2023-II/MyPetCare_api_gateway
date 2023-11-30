@@ -12,7 +12,7 @@ function getAllPets (): string {
         }
         vaccines{
           name
-          vaccination_date
+          vaccination_year
           duration
         }
       }
@@ -36,7 +36,7 @@ function getPet (id: string): string {
         }
         vaccines{
           name
-          vaccination_date
+          vaccination_year
           duration
         }
       }

@@ -12,7 +12,7 @@ class GetAllUsersPetService {
     }
 
     console.log(msRoutes.users_ms.route, msRoutes.users_ms.port.toString())
-    const url: string = 'https://mpc-users-ms.onrender.com' + `/pet/getall/${id}`
+    const url: string = `${msRoutes.users_ms.route}:${msRoutes.users_ms.port}` + `/pet/getall/${id}`
 
     const events = await fetch(url)
       .then(async (response) => {

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { ResponseStatus } from '../types/response.types'
+import msRoutes from '../config/msRoutes'
 
 class AuthenticationMiddlewares {
   public async doom (_req: Request, res: Response, _next: NextFunction): Promise<void> {
@@ -15,7 +16,7 @@ class AuthenticationMiddlewares {
     }
     const accessToken = req.headers.authorization?.split(' ')[1]
 
-    const url: string = 'https://mpc-users-ms.onrender.com' + '/user/verify'
+    const url: string = `${msRoutes.users_ms.route}:${msRoutes.users_ms.port}` + '/user/verify'
     console.log(url)
     console.log(accessToken)
     // fetch users api

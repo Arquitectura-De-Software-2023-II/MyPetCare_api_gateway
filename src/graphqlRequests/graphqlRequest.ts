@@ -1,7 +1,9 @@
 import { GraphqlStatus, GraphqlhandlerResponse } from '../types/request.types'
+import msRoutes from '../config/msRoutes'
 
 // define the endpoint
-const clinicHstoryEndpoint = 'https://mpc-clinic-history-ms.onrender.com/graphql'
+// 'https://mpc-clinic-history-ms.onrender.com/graphql'
+const clinicHstoryEndpoint = `${msRoutes.clinicHistory_ms.route}:${msRoutes.clinicHistory_ms.port}` + '/graphql'
 // define the fetch function
 const graphqlFetchQuery = async (query: string, variables?: string): Promise<GraphqlhandlerResponse> => await fetch(
   clinicHstoryEndpoint,

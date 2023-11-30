@@ -1,4 +1,5 @@
 import { Responses, ResponseStatus } from '../../types/response.types'
+import msRoutes from '../../config/msRoutes'
 
 class DeleteUserService {
   public async deleteUserService (email: string): Promise<Responses> {
@@ -10,7 +11,7 @@ class DeleteUserService {
       }
     }
 
-    const url: string = 'https://mpc-users-ms.onrender.com' + '/user/delete'
+    const url: string = `${msRoutes.users_ms.route}:${msRoutes.users_ms.port}` + '/user/delete'
 
     const fetchData = await fetch(url, {
       method: 'DELETE',
